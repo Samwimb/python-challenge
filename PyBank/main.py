@@ -1,4 +1,4 @@
-
+import os
 import csv
 
 budgetcsv = "budget_data.CSV"
@@ -43,6 +43,25 @@ with open(budgetcsv, newline="") as csvfile:
     print("Avereage Revenue Change: $", avgrevchange)
     print("Greatest Increase in Revenue:", maxrevmonth,"($", maxrevchange,")")
     print("Greatest Decrease in Revenue:", minrevmonth,"($", minrevchange,")")
+    
+output_file = os.path.join("budget_output.txt")
+
+#  Open the output file
+with open(output_file, "w+", newline="") as datafile:
+    
+    datafile.write("Financial Analysis")
+    datafile.write("\n")
+    datafile.write("-----------------------------------")
+    datafile.write("\n")
+    datafile.write(f"Total: {sum(nettotal)}")
+    datafile.write("\n")
+    datafile.write(f"Total Months: {len(totalmonths)}")
+    datafile.write("\n")
+    datafile.write(f"Avereage Revenue Change: ${avgrevchange}")
+    datafile.write("\n")
+    datafile.write(f"Greatest Increase in Revenue: {maxrevmonth} ($ {maxrevchange} )")
+    datafile.write("\n")
+    datafile.write(f"Greatest Increase in Revenue: {minrevmonth} ($ {minrevchange} )")
  
         
         
