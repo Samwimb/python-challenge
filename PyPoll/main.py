@@ -4,14 +4,11 @@ import csv
 electioncsv = "election_data.CSV"
 
 totalvotes = 0
-#maybe this should be a dictionary
-
 candidates = {}
 percentages ={}
 
 with open(electioncsv, newline="") as csvfile:
 
-    # Split the data on commas
     csvreader = csv.reader(csvfile, delimiter=',')
     
     next(csvreader)
@@ -30,35 +27,48 @@ with open(electioncsv, newline="") as csvfile:
             
             candidates[row[2]] = 1
             
+output_file = os.path.join("polling_output.txt")
+
+#  Open the output file
+with open(output_file, "w+", newline="") as datafile:
             
-#print(candidates)
-            
-print("Election Results")
-print("-----------------------")
-print(f"Total Votes: {totalvotes}")
-print("-----------------------")
+    print("Election Results")
+    datafile.write("Election Results")
+    datafile.write("\n")
+    print("-----------------------")
+    datafile.write("-----------------------")
+    datafile.write("\n")
+    print(f"Total Votes: {totalvotes}")
+    datafile.write(f"Total Votes: {totalvotes}")
+    datafile.write("\n")
+    print("-----------------------")
+    datafile.write("-----------------------")
+    datafile.write("\n")
 
-for key in candidates:
+    for key in candidates:
     
     
-    if key in percentages:
-        percentages[key] = (candidates[key]/totalvotes)*100
+        if key in percentages:
+            percentages[key] = (candidates[key]/totalvotes)*100
         
-    else:
-        percentages[key] = (candidates[key]/totalvotes)*100
+        else:
+            percentages[key] = (candidates[key]/totalvotes)*100
         
-    winner = max(percentages.keys(), key = (lambda x: percentages[x]))
+        winner = max(percentages.keys(), key = (lambda x: percentages[x]))
         
-    print(f"{key}: {(candidates[key]/totalvotes)*100}% ({candidates[key]})")
+        print(f"{key}: {(candidates[key]/totalvotes)*100}% ({candidates[key]})")
+        datafile.write(f"{key}: {(candidates[key]/totalvotes)*100}% ({candidates[key]})")
+        datafile.write("\n")
     
-print("-----------------------")
-
-#print(percentages)
-
-
-
-print(f"Winner: {winner}")
-
+    print("-----------------------")
+    datafile.write("-----------------------")
+    datafile.write("\n")
+    print(f"Winner: {winner}")
+    datafile.write(f"Winner: {winner}")
+    datafile.write("\n")
+    print("-----------------------")
+    datafile.write("-----------------------")
+    datafile.write("\n")
 
 
 
