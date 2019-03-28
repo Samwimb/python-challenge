@@ -26,6 +26,7 @@ with open(budgetcsv, newline="") as csvfile:
     print("Financial Analysis")
     print("-----------------------------------")
     print(f"Total: {sum(nettotal)}")
+#print(f"Total: {nettotal}")
     print(f"Total Months: {len(totalmonths)}")
     
     
