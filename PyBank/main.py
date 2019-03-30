@@ -45,6 +45,7 @@ with open(budgetcsv, newline="") as csvfile:
     print("Greatest Increase in Revenue:", maxrevmonth,"($", maxrevchange,")")
     print("Greatest Decrease in Revenue:", minrevmonth,"($", minrevchange,")")
     
+    
 output_file = os.path.join("budget_output.txt")
 
 #  Open the output file

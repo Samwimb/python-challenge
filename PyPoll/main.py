@@ -17,7 +17,6 @@ with open(electioncsv, newline="") as csvfile:
         
         totalvotes += 1
         
-    #print(totalvotes)
         
         if row[2] in candidates:
             candidates[row[2]] += 1
@@ -47,17 +46,15 @@ with open(output_file, "w+", newline="") as datafile:
 
     for key in candidates:
     
-    
-        if key in percentages:
-            percentages[key] = (candidates[key]/totalvotes)*100
-        
-        else:
-            percentages[key] = (candidates[key]/totalvotes)*100
+        percentages[key] = (candidates[key]/totalvotes)*100
         
         winner = max(percentages.keys(), key = (lambda x: percentages[x]))
         
-        print(f"{key}: {(candidates[key]/totalvotes)*100}% ({candidates[key]})")
-        datafile.write(f"{key}: {(candidates[key]/totalvotes)*100}% ({candidates[key]})")
+        percent = (candidates[key]/totalvotes)*100
+        percent_new = "%.3f%%" % percent
+        
+        print(f"{key}: {percent_new} ({candidates[key]})")
+        datafile.write(f"{key}: {percent_new} ({candidates[key]})")
         datafile.write("\n")
     
     print("-----------------------")
